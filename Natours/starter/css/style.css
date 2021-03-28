@@ -53,6 +53,7 @@ body {
     left: 50%;
     /* the top left corner is centered in relation toparent element,so need to translate to adjust relative to positioning of element */
     transform: translate(-50%, -50%);
+    text-align: center;
 }
 
 .heading-primary {
@@ -61,6 +62,7 @@ body {
     /* At the end of animation it shakes slightly toward top.
     To prevent this add backface visibility property */
     backface-visibility: hidden;
+    margin-bottom: 60px;
 }
 
 .heading-primary-main {
@@ -70,7 +72,7 @@ body {
     letter-spacing: 35px;
     /* For animation to work need to add 2properties */
     animation-name: moveInLeft;
-    animation-duration: 5s;
+    animation-duration: 2s;
     animation-timing-function: ease-out;
     /*
     animation-timing-function: ease, ease-in, ease-out, ease-in-out, linear, step-start, step-end ;
@@ -87,10 +89,10 @@ body {
     letter-spacing: 17.4px;
     /* Combine all 3 in animation
     animation-name: moveInRight;
-    animation-duration: 5s;
+    animation-duration: 2s;
     animation-timing-function: ease-out;
     */
-    animation: moveInRight 5s ease-out;
+    animation: moveInRight 2s ease-out;
 }
 
 @keyframes moveInLeft {
@@ -104,8 +106,8 @@ body {
     }
     100% {
         opacity: 1;
-        /* zero indicates that it's at final place chose for it to be positioned*/
-        transform: translateX(0);
+        /* zero indicates that it's at final place chose for it to be positioned - Note, no x or y */
+        transform: translate(0);
     }
 }
 
@@ -119,6 +121,76 @@ body {
     }
     100% {
         opacity: 1;
-        transform: translateX(0);
+        transform: translate(0);
     }
+}
+
+@keyframes moveInBottom {
+    0% {
+        opacity: 0;
+        transform: translateY(30px);
+    }    
+    100% {
+        opacity: 1;
+        transform: translate(0);
+    }
+}
+
+.btn:link,
+.btn:visited {
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 15px 40px;
+    /* displays on top of heading text because by default it's an in-line element to make it display in box-model like a block element. Because a simple inline element don't need to do complicated positioning just set a text align center in text-box */
+    display: inline-block;
+    border-radius: 100px;
+    transition: all .2s;
+    position: relative;
+}
+.btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgb(0,0,0,.2);
+}
+.btn:active {
+    transform: translateY(-1px);
+    box-shadow: 0 5px 10px rgb(0,0,0,.2);
+}
+
+.btn-white {
+    background-color: #fff;
+    color: #777;
+}
+
+.btn::after {
+    content: "";
+    display: inline-block;
+    /* height and width percentage of button -Pseudo element is basically treated as a child of the element*/
+    height: 100%;
+    width: 100%;
+    border-radius: 100px;
+    /* Want to position it behind button or it looks like one   big fat button - But remember the absolute positioning has to have a reference. Will be the first element it can find with a relative position, Currently would be header, but we want it to be hidden after the button, so the reference should be the button (on btn:link). */
+    position: absolute;
+    top: 0;
+    left: 0;
+    /* need z-index when elements on top of each other*/
+    z-index: -1;
+    /* Transition property goes on the initial state - the after pseudo element */
+    transition: all .4s;
+}
+
+.btn-white::after {
+    background-color: #fff;
+}
+
+.btn:hover::after {
+    transform: scaleX(1.4) scaleY(1.6);
+    /* the double white part that see is the pseudo element that becomes visible as hover over the button (Even though the original button is still on top of the pseudo element.
+    ALso opacity is going to zero as element fades out */
+    opacity: 0;
+}
+.btn-animated {
+    animation: moveInBottom .5s ease-out .75s;
+    /* animation name, duration, timing function and delay */
+    animation-fill-mode: backwards;
+    /* Automatically applys the styles (opacity= 1 &transform/translateY(30px)) up to zero % before the animation starts */
 }
