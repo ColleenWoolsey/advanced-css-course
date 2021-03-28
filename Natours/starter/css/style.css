@@ -41,17 +41,26 @@ body {
     height: 35px;
 }
 
+/* If want one of the @keyframe animations to ONLY happen to logo when hover
+.logo:hover {
+    animation: moveInRight 10s ease-out;
+}  */
+
+
 .text-box {
     position: absolute;
-    top: 50%;
+    top: 40%;
     left: 50%;
-    /* the top left corner is centered so translate adjusts relative to height of element because */
+    /* the top left corner is centered in relation toparent element,so need to translate to adjust relative to positioning of element */
     transform: translate(-50%, -50%);
 }
 
 .heading-primary {
     color: #fff;
     text-transform: uppercase;
+    /* At the end of animation it shakes slightly toward top.
+    To prevent this add backface visibility property */
+    backface-visibility: hidden;
 }
 
 .heading-primary-main {
@@ -59,6 +68,15 @@ body {
     font-size: 60px;
     font-weight: 700;
     letter-spacing: 35px;
+    /* For animation to work need to add 2properties */
+    animation-name: moveInLeft;
+    animation-duration: 5s;
+    animation-timing-function: ease-out;
+    /*
+    animation-timing-function: ease, ease-in, ease-out, ease-in-out, linear, step-start, step-end ;
+    Waits 3 seconds - animation-delay: 3s;
+    Does animation 3 times - animation-count: 3;
+    */
 }
 
 .heading-primary-sub {
@@ -67,4 +85,40 @@ body {
     font-size: 20px;
     font-weight: 400;
     letter-spacing: 17.4px;
+    /* Combine all 3 in animation
+    animation-name: moveInRight;
+    animation-duration: 5s;
+    animation-timing-function: ease-out;
+    */
+    animation: moveInRight 5s ease-out;
+}
+
+@keyframes moveInLeft {
+    0% {
+        opacity: 0;
+        transform: translateX(-100px);
+    }
+        80% {
+        transform: translateX(10px);
+        /* to  make it go past center and then slide back */
+    }
+    100% {
+        opacity: 1;
+        /* zero indicates that it's at final place chose for it to be positioned*/
+        transform: translateX(0);
+    }
+}
+
+@keyframes moveInRight {
+    0% {
+        opacity: 0;
+        transform: translateX(100px);
+    }    
+    80% {
+        transform: translateX(-10px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
 }
