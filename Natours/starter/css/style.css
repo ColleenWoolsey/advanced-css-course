@@ -7,19 +7,33 @@ Dark green: #28b485
 
 */
 
-* {
+/* Border-box = The height and width are defined for the entire box, including the padding and the border - Not just the content */
+
+*,
+*::after,
+*::before {
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
+//   box-sizing: border-box; - Whenever we can use inheritance we should instead of a universal selector. Remove box-sizing from here and put it in body. The box-sizing property is not inherited unless set - Makes it easier to change box-sizing for plugins or components. Then need to go and add pseudo elements to "*" because by default only applies to real elements
+  box-sizing: inherit;
+}
+
+html {
+    /* Could set font-size to 10px - font-size: 10px;
+    If use 10px as root font-size, it's easy to calculate rem, but means user can't change font-size if needed.
+    The default font-size is 16px, so to make it scalable 10/16 =  62.5% */
+    font-size: 62.5%;
 }
 
 body {
     font-family: "Lato", sans-serif;
     font-weight: 400;
-    font-size: 16px;
+    // font-size: 16px;
     line-height: 1.7;
     color: #777;
-    padding: 30px;
+    // padding: 30px;
+    padding: 3rem;
+    box-sizing: border-box;
 }
 
 .header {
@@ -31,14 +45,14 @@ body {
     position: relative;      
 }
 
-.logo-box {
+.header__logo-box {
     position: absolute;
-    top: 40px;
-    left: 40px;
+    top: 4rem;
+    left: 4rem;
 }
 
-.logo {
-    height: 35px;
+.header__logo {
+    height: 3.5rem;
 }
 
 /* If want one of the @keyframe animations to ONLY happen to logo when hover
@@ -47,7 +61,7 @@ body {
 }  */
 
 
-.text-box {
+.header__text-box {
     position: absolute;
     top: 40%;
     left: 50%;
@@ -62,14 +76,14 @@ body {
     /* At the end of animation it shakes slightly toward top.
     To prevent this add backface visibility property */
     backface-visibility: hidden;
-    margin-bottom: 60px;
+    margin-bottom: 6rem;
 }
 
-.heading-primary-main {
+.heading-primary--main {
     display: block;
-    font-size: 60px;
+    font-size: 6rem;
     font-weight: 700;
-    letter-spacing: 35px;
+    letter-spacing: 3.5rem;
     /* For animation to work need to add 2properties */
     animation-name: moveInLeft;
     animation-duration: 2s;
@@ -81,12 +95,12 @@ body {
     */
 }
 
-.heading-primary-sub {
+.heading-primary--sub {
     color: #fff;
     display: block;
-    font-size: 20px;
+    font-size: 2rem;
     font-weight: 400;
-    letter-spacing: 17.4px;
+    letter-spacing: 1.75rem;
     /* Combine all 3 in animation
     animation-name: moveInRight;
     animation-duration: 2s;
@@ -98,10 +112,10 @@ body {
 @keyframes moveInLeft {
     0% {
         opacity: 0;
-        transform: translateX(-100px);
+        transform: translateX(-10rem);
     }
         80% {
-        transform: translateX(10px);
+        transform: translateX(1rem);
         /* to  make it go past center and then slide back */
     }
     100% {
@@ -114,10 +128,10 @@ body {
 @keyframes moveInRight {
     0% {
         opacity: 0;
-        transform: translateX(100px);
+        transform: translateX(10rem);
     }    
     80% {
-        transform: translateX(-10px);
+        transform: translateX(-1rem);
     }
     100% {
         opacity: 1;
@@ -128,7 +142,7 @@ body {
 @keyframes moveInBottom {
     0% {
         opacity: 0;
-        transform: translateY(30px);
+        transform: translateY(3rem);
     }    
     100% {
         opacity: 1;
@@ -140,23 +154,25 @@ body {
 .btn:visited {
     text-transform: uppercase;
     text-decoration: none;
-    padding: 15px 40px;
+    padding: 1.5rem 4rem;
     /* displays on top of heading text because by default it's an in-line element to make it display in box-model like a block element. Because a simple inline element don't need to do complicated positioning just set a text align center in text-box */
     display: inline-block;
-    border-radius: 100px;
+    border-radius: 10rem;
     transition: all .2s;
     position: relative;
+    /* have to add font-size after changed default to 10px from 16 */
+    font-size: 1.6rem;
 }
 .btn:hover {
-    transform: translateY(-3px);
+    transform: translateY(-.3rem);
     box-shadow: 0 10px 20px rgb(0,0,0,.2);
 }
 .btn:active {
     transform: translateY(-1px);
-    box-shadow: 0 5px 10px rgb(0,0,0,.2);
+    box-shadow: 0 .5rem 1rem rgb(0,0,0,.2);
 }
 
-.btn-white {
+.btn--white {
     background-color: #fff;
     color: #777;
 }
@@ -167,7 +183,7 @@ body {
     /* height and width percentage of button -Pseudo element is basically treated as a child of the element*/
     height: 100%;
     width: 100%;
-    border-radius: 100px;
+    border-radius: 10rem;
     /* Want to position it behind button or it looks like one   big fat button - But remember the absolute positioning has to have a reference. Will be the first element it can find with a relative position, Currently would be header, but we want it to be hidden after the button, so the reference should be the button (on btn:link). */
     position: absolute;
     top: 0;
@@ -178,7 +194,7 @@ body {
     transition: all .4s;
 }
 
-.btn-white::after {
+.btn--white::after {
     background-color: #fff;
 }
 
@@ -188,7 +204,7 @@ body {
     ALso opacity is going to zero as element fades out */
     opacity: 0;
 }
-.btn-animated {
+.btn--animated {
     animation: moveInBottom .5s ease-out .75s;
     /* animation name, duration, timing function and delay */
     animation-fill-mode: backwards;
