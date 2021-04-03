@@ -1,0 +1,35 @@
+.header {
+    height: 95vh;
+    // background-image: linear-gradient(to right bottom, rgba(126, 213, 111, 0.8), rgb(40, 180, 133, 0.8)), url(../img/hero.jpg);
+    // Below only works with SASS
+    background-image: linear-gradient(to right bottom, rgba($color-primary-light, 0.8), rgba($color-primary-dark, 0.8)), url(../img/hero.jpg);
+    background-size: cover;
+    background-position: top;
+    clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%);
+    position: relative;
+    
+    &__logo-box {
+        position: absolute;
+        top: 4rem;
+        left: 4rem;
+    }
+    
+    &__logo {
+        height: 3.5rem;
+    }
+    
+    /* If want one of the @keyframe animations to ONLY happen to logo when hover
+    .logo:hover {
+        animation: moveInRight 10s ease-out;
+    }  */
+    
+    
+    &__text-box {
+        position: absolute;
+        top: 40%;
+        left: 50%;
+        /* the top left corner is centered in relation toparent element,so need to translate to adjust relative to positioning of element */
+        transform: translate(-50%, -50%);
+        text-align: center;
+    }
+}

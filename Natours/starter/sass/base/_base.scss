@@ -1,0 +1,22 @@
+// This file is for low level basics such as resets and styles for the HTML and body element selectors
+
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+//   box-sizing: border-box; - Whenever we can use inheritance we should instead of a universal selector. Remove box-sizing from here and put it in body. The box-sizing property is not inherited unless set - Makes it easier to change box-sizing for plugins or components. Then need to go and add pseudo elements to "*" because by default only applies to real elements
+  box-sizing: inherit;
+}
+
+html {
+    /* Could set font-size to 10px - font-size: 10px;
+    If use 10px as root font-size, it's easy to calculate rem, but means user can't change font-size if needed.
+    The default font-size is 16px, so to make it scalable 10/16 =  62.5% */
+    font-size: 62.5%;
+}
+
+body {
+  box-sizing: border-box;
+}
+/* Border-box = The height and width are defined for the entire box, including the padding and the border - Not just the content */

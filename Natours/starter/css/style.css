@@ -1,89 +1,3 @@
-/* Border-box = The height and width are defined for the entire box, including the padding and the border - Not just the content */
-*,
-*::after,
-*::before {
-  margin: 0;
-  padding: 0;
-  box-sizing: inherit; }
-
-html {
-  /* Could set font-size to 10px - font-size: 10px;
-    If use 10px as root font-size, it's easy to calculate rem, but means user can't change font-size if needed.
-    The default font-size is 16px, so to make it scalable 10/16 =  62.5% */
-  font-size: 62.5%; }
-
-body {
-  font-family: "Lato", sans-serif;
-  font-weight: 400;
-  line-height: 1.7;
-  color: #777;
-  padding: 3rem;
-  box-sizing: border-box; }
-
-.header {
-  height: 95vh;
-  background-image: linear-gradient(to right bottom, rgba(126, 213, 111, 0.8), rgba(40, 180, 133, 0.8)), url(../img/hero.jpg);
-  background-size: cover;
-  background-position: top;
-  clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%);
-  position: relative; }
-
-.header__logo-box {
-  position: absolute;
-  top: 4rem;
-  left: 4rem; }
-
-.header__logo {
-  height: 3.5rem; }
-
-/* If want one of the @keyframe animations to ONLY happen to logo when hover
-.logo:hover {
-    animation: moveInRight 10s ease-out;
-}  */
-.header__text-box {
-  position: absolute;
-  top: 40%;
-  left: 50%;
-  /* the top left corner is centered in relation toparent element,so need to translate to adjust relative to positioning of element */
-  transform: translate(-50%, -50%);
-  text-align: center; }
-
-.heading-primary {
-  color: #fff;
-  text-transform: uppercase;
-  /* At the end of animation it shakes slightly toward top.
-    To prevent this add backface visibility property */
-  backface-visibility: hidden;
-  margin-bottom: 6rem; }
-
-.heading-primary--main {
-  display: block;
-  font-size: 6rem;
-  font-weight: 700;
-  letter-spacing: 3.5rem;
-  /* For animation to work need to add 2properties */
-  animation-name: moveInLeft;
-  animation-duration: 2s;
-  animation-timing-function: ease-out;
-  /*
-    animation-timing-function: ease, ease-in, ease-out, ease-in-out, linear, step-start, step-end ;
-    Waits 3 seconds - animation-delay: 3s;
-    Does animation 3 times - animation-count: 3;
-    */ }
-
-.heading-primary--sub {
-  color: #fff;
-  display: block;
-  font-size: 2rem;
-  font-weight: 400;
-  letter-spacing: 1.75rem;
-  /* Combine all 3 in animation
-    animation-name: moveInRight;
-    animation-duration: 2s;
-    animation-timing-function: ease-out;
-    */
-  animation: moveInRight 2s ease-out; }
-
 @keyframes moveInLeft {
   0% {
     opacity: 0;
@@ -114,8 +28,65 @@ body {
     opacity: 1;
     transform: translate(0); } }
 
-.btn:link,
-.btn:visited {
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit; }
+
+html {
+  /* Could set font-size to 10px - font-size: 10px;
+    If use 10px as root font-size, it's easy to calculate rem, but means user can't change font-size if needed.
+    The default font-size is 16px, so to make it scalable 10/16 =  62.5% */
+  font-size: 62.5%; }
+
+body {
+  box-sizing: border-box; }
+
+/* Border-box = The height and width are defined for the entire box, including the padding and the border - Not just the content */
+body {
+  font-family: "Lato", sans-serif;
+  font-weight: 400;
+  line-height: 1.7;
+  color: #777;
+  padding: 3rem; }
+
+.heading-primary {
+  color: white;
+  text-transform: uppercase;
+  /* At the end of animation it shakes slightly toward top.
+      To prevent this add backface visibility property */
+  backface-visibility: hidden;
+  margin-bottom: 6rem; }
+  .heading-primary--main {
+    display: block;
+    font-size: 6rem;
+    font-weight: 700;
+    letter-spacing: 3.5rem;
+    /* For animation to work need to add 2properties */
+    animation-name: moveInLeft;
+    animation-duration: 2s;
+    animation-timing-function: ease-out;
+    /*
+        animation-timing-function: ease, ease-in, ease-out, ease-in-out, linear, step-start, step-end ;
+        Waits 3 seconds - animation-delay: 3s;
+        Does animation 3 times - animation-count: 3;
+        */ }
+  .heading-primary--sub {
+    color: white;
+    display: block;
+    font-size: 2rem;
+    font-weight: 400;
+    letter-spacing: 1.75rem;
+    /* Combine all 3 in animation
+        animation-name: moveInRight;
+        animation-duration: 2s;
+        animation-timing-function: ease-out;
+        */
+    animation: moveInRight 2s ease-out; }
+
+.btn, .btn:link, .btn:visited {
   text-transform: uppercase;
   text-decoration: none;
   padding: 1.5rem 4rem;
@@ -125,19 +96,35 @@ body {
   transition: all .2s;
   position: relative;
   /* have to add font-size after changed default to 10px from 16 */
-  font-size: 1.6rem; }
+  font-size: 1.6rem;
+  border: none;
+  cursor: pointer; }
 
 .btn:hover {
   transform: translateY(-0.3rem);
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2); }
+  box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.2); }
+  .btn:hover::after {
+    transform: scaleX(1.4) scaleY(1.6);
+    /* the double white part that see is the pseudo element that becomes visible as hover over the button (Even though the original button is still on top of the pseudo element.
+          ALso opacity is going to zero as element fades out */
+    opacity: 0; }
 
-.btn:active {
+.btn:active, .btn:focus {
+  outline: none;
   transform: translateY(-1px);
   box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.2); }
 
 .btn--white {
   background-color: #fff;
   color: #777; }
+  .btn--white::after {
+    background-color: #fff; }
+
+.btn--green {
+  background-color: #55c57a;
+  color: #fff; }
+  .btn--green::after {
+    background-color: #55c57a; }
 
 .btn::after {
   content: "";
@@ -155,17 +142,33 @@ body {
   /* Transition property goes on the initial state - the after pseudo element */
   transition: all .4s; }
 
-.btn--white::after {
-  background-color: #fff; }
-
-.btn:hover::after {
-  transform: scaleX(1.4) scaleY(1.6);
-  /* the double white part that see is the pseudo element that becomes visible as hover over the button (Even though the original button is still on top of the pseudo element.
-    ALso opacity is going to zero as element fades out */
-  opacity: 0; }
-
 .btn--animated {
   animation: moveInBottom .5s ease-out .75s;
   /* animation name, duration, timing function and delay */
   animation-fill-mode: backwards;
   /* Automatically applys the styles (opacity= 1 &transform/translateY(30px)) up to zero % before the animation starts */ }
+
+.header {
+  height: 95vh;
+  background-image: linear-gradient(to right bottom, rgba(126, 213, 111, 0.8), rgba(40, 180, 133, 0.8)), url(../img/hero.jpg);
+  background-size: cover;
+  background-position: top;
+  clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%);
+  position: relative;
+  /* If want one of the @keyframe animations to ONLY happen to logo when hover
+    .logo:hover {
+        animation: moveInRight 10s ease-out;
+    }  */ }
+  .header__logo-box {
+    position: absolute;
+    top: 4rem;
+    left: 4rem; }
+  .header__logo {
+    height: 3.5rem; }
+  .header__text-box {
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    /* the top left corner is centered in relation toparent element,so need to translate to adjust relative to positioning of element */
+    transform: translate(-50%, -50%);
+    text-align: center; }

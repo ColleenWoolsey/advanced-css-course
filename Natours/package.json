@@ -3,8 +3,10 @@
   "version": "1.0.0",
   "description": "Landing page for natours",
   "main": "index.js",
+
   "scripts": {
-    "compile:sass": "node-sass starter/sass/main.scss starter/css/style.css"
+    "compile:sass": "node-sass starter/sass/main.scss starter/css/style.css -w",
+    "start": "http-server ./app -d false"
   },
   "repository": {
     "type": "git",
@@ -13,6 +15,7 @@
   "author": "Colleen",
   "license": "ISC",
   "devDependencies": {
-    "node-sass": "^5.0.0"
+    "node-sass": "^5.0.0",
+    "http-server": "^0.8.0"
   }
 }

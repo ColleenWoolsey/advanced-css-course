@@ -1,0 +1,78 @@
+.btn {
+    &,
+    &:link,
+    &:visited {
+      text-transform: uppercase;
+      text-decoration: none;
+      padding: 1.5rem 4rem;
+      /* displays on top of heading text because by default it's an in-line element to make it display in box-model like a block element. Because a simple inline element don't need to do complicated positioning just set a text align center in text-box */
+      display: inline-block;
+      border-radius: 10rem;
+      transition: all .2s;
+      position: relative;
+      /* have to add font-size after changed default to 10px from 16 */
+      font-size: 1.6rem;
+    
+     //Change for the <button> element
+     border: none;
+     cursor: pointer;
+    }
+  
+    &:hover {
+      transform: translateY(-0.3rem);
+      box-shadow: 0 1rem 2rem rgba($color-black,.2);
+    
+      &::after {
+        transform: scaleX(1.4) scaleY(1.6);
+        /* the double white part that see is the pseudo element that becomes visible as hover over the button (Even though the original button is still on top of the pseudo element.
+          ALso opacity is going to zero as element fades out */
+        opacity: 0; }
+    }
+
+    &:active,
+    &:focus {
+        outline: none;
+        transform: translateY(-1px);
+        box-shadow: 0 .5rem 1rem rgba($color-black,.2);
+    }
+    
+    &--white {
+        background-color: $color-white;
+        color: $color-grey-dark;
+
+        &::after {
+            background-color: $color-white;
+        }
+    }
+
+    &--green {
+        background-color: $color-primary;
+        color: $color-white;
+
+        &::after {
+            background-color: $color-primary;
+        }
+    }
+      
+    &::after {
+      content: "";
+      display: inline-block;
+      /* height and width percentage of button -Pseudo element is basically treated as a child of the element*/
+      height: 100%;
+      width: 100%;
+      border-radius: 10rem;
+      /* Want to position it behind button or it looks like one   big fat button - But remember the absolute positioning has to have a reference. Will be the first element it can find with a relative position, Currently would be header, but we want it to be hidden after the button, so the reference should be the button (on btn:link). */
+      position: absolute;
+      top: 0;
+      left: 0;
+      /* need z-index when elements on top of each other*/
+      z-index: -1;
+      /* Transition property goes on the initial state - the after pseudo element */
+      transition: all .4s; }
+        
+    &--animated {
+      animation: moveInBottom .5s ease-out .75s;
+      /* animation name, duration, timing function and delay */
+      animation-fill-mode: backwards;
+      /* Automatically applys the styles (opacity= 1 &transform/translateY(30px)) up to zero % before the animation starts */ }
+  }
