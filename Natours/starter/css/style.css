@@ -86,6 +86,38 @@ body {
         */
     animation: moveInRight 2s ease-out; }
 
+.heading-secondary {
+  font-size: 3.5rem;
+  text-transform: uppercase;
+  font-weight: 700;
+  display: inline-block;
+  letter-spacing: .2rem;
+  background-image: linear-gradient(to right, #7ed56f, #28b485);
+  -webkit-background-clip: text;
+  color: transparent;
+  transition: all .2s; }
+  .heading-secondary:hover {
+    transform: skewY(2deg) skewX(15deg) scale(1.1);
+    text-shadow: 0.5rem 1rem 2rem rgba(0, 0, 0, 0.2); }
+
+.u-center-text {
+  text-align: center !important; }
+
+.u-margin-bottom-small {
+  margin-bottom: 1.5rem !important; }
+
+.u-margin-bottom-medium {
+  margin-bottom: 4rem !important; }
+
+.u-margin-bottom-big {
+  margin-bottom: 8rem !important; }
+
+.u-margin-top-big {
+  margin-top: 8rem !important; }
+
+.u-margin-top-huge {
+  margin-top: 10rem !important; }
+
 .btn, .btn:link, .btn:visited {
   text-transform: uppercase;
   text-decoration: none;
@@ -150,10 +182,9 @@ body {
 
 .grid-test {
   margin-top: 20rem;
-  background-color: lightgrey; }
+  background-color: #f7f7f7; }
 
 .row {
-  background-color: #fff;
   max-width: 114rem;
   margin: 0 auto; }
   .row:not(:last-child) {
@@ -164,8 +195,7 @@ body {
     clear: both; }
   .row [class^="col-"] {
     float: left;
-    background-color: orangered;
-    color: #fff;
+    color: #000;
     font-weight: bold; }
     .row [class^="col-"]:not(:last-child) {
       margin-right: 6rem; }
@@ -206,3 +236,8 @@ body {
     /* the top left corner is centered in relation toparent element,so need to translate to adjust relative to positioning of element */
     transform: translate(-50%, -50%);
     text-align: center; }
+
+.section-about {
+  background-color: #f7f7f7;
+  padding: 25rem 0;
+  margin-top: -20vh; }

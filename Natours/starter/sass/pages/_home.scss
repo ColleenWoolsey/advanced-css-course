@@ -1,0 +1,7 @@
+.section-about {
+    background-color: $color-grey-light-1;
+    padding: 25rem 0;
+    margin-top: -20vh;
+}
+// Use 25 rem because section touches header on right, but need the grey to cover right triangle wedge on left end. So need to move up this part. How far? The height of the header is 95vh and the polygon on the right side goes down to 75vh. So the difference (white part) is 95-75 = 20vh
+// So move it up by giving it a negative margin of 20

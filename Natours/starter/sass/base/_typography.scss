@@ -47,3 +47,26 @@ body {
       animation: moveInRight 2s ease-out;
     }
   }
+
+  // Gradient Text
+  .heading-secondary {
+    font-size: 3.5rem;
+    text-transform: uppercase;
+    font-weight: 700;
+    display: inline-block;
+    letter-spacing: .2rem;
+    background-image: linear-gradient(to right, $color-primary-light, $color-primary-dark);
+    -webkit-background-clip: text;
+    color: transparent;
+    transition: all .2s;
+
+    &:hover {
+      transform: skewY(2deg) skewX(15deg) scale(1.1);
+      text-shadow: .5rem 1rem 2rem rgba($color-black, .2);
+    }    
+  }
+  // To make the gradient color stop at end of text (ie: not occupy 100% of the block width) - make inline-block.
+  // To use webkit background-clip property so the background gets clipped (is visible) exactly where the text is, need webkit prefix.
+  // However, what we want to see is not the actual text, but the background image ... so make the text transparent
+  // Shadow = X-direction, Y-direction, blur and color
+  // Use utility classes to Center by wrapping element in a parent element
