@@ -76,3 +76,32 @@
       animation-fill-mode: backwards;
       /* Automatically applys the styles (opacity= 1 &transform/translateY(30px)) up to zero % before the animation starts */ }
   }
+
+  .btn-text {
+    &:link,
+    &:visited {
+        font-size: $default-font-size;
+        color: $color-primary;
+        display: inline-block;
+        // Want to display it as inline-block so can use box model properties like padding, margin, etc
+        text-decoration: none;
+        // This gets rid of link underline so can set our own line and then create padding between it and text
+        border-bottom: 1px solid $color-primary;
+        padding: 3px;
+        transition: all .2s;
+    }
+
+    &:hover {
+        background-color: $color-primary;
+        color: $color-white;
+        box-shadow: 0 1rem 2rem rgba($color-black, .15);
+        // Move UP (Y) 2px
+        transform: translateY(-2px);
+    }
+
+    &:active {
+        box-shadow: 0 .5rem 1rem rgba($color-black, .15);
+        // Move back to original position
+        transform: translateY(0);
+    }
+}

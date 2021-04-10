@@ -70,3 +70,17 @@ body {
   // However, what we want to see is not the actual text, but the background image ... so make the text transparent
   // Shadow = X-direction, Y-direction, blur and color
   // Use utility classes to Center by wrapping element in a parent element
+
+.heading-tertiary {
+  font-size: $default-font-size;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.paragraph {
+    font-size: $default-font-size;
+
+    &:not(:last-child) {
+        margin-bottom: 3rem;
+    }
+}

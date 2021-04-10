@@ -1,0 +1,57 @@
+.composition {
+    position: relative;
+
+    &__photo {
+        width: 55%;
+        // 55% of the container div composition - class="col-1-of-2"
+        box-shadow: 0 1.5rem 4rem rgba($color-black, .4);
+        border-radius: 2px;
+        // Want the photos on top of one another so set the position to absolute, element(s) will be placed acording to a reference - which is the first parent it encounters that has ITS position set to something - We want it to be div composition, so set its position to relative - Now 0, 0 for the photo is the top left corner of composition.
+        position: absolute;
+        z-index: 10;
+        transition: all .2s;
+        // If used border it wouldn't have the space between photo and outline
+        outline-offset: 2rem;
+
+        // Set position of photos by selecting each one
+        // Made top of photo higher than text so looks cooler
+        &--p1 {
+            left: 0;
+            top: -2rem;
+        }
+
+        // In line with text?
+        &--p2 {
+            right: 0;
+            top: 2rem;
+        }
+
+        &--p3 {
+            left: 20%;
+            top: 10rem;
+        }
+
+        &:hover {
+            // If used border it wouldn't have the space between photo and outline
+            outline: 1.5rem solid $color-primary;
+
+            // Scaling it 1.05 gives a subtle zoom effect and translating it moves it up a bit
+            transform: scale(1.05) translateY(-.5rem);
+
+            // Box-shadow gets bigger and darker because supposed to seem closer ot the user
+            box-shadow: 0 2.5rem 4rem rgba($color-black, .5);
+            
+            // Overlaps all the other images so give it a higher z index than other photos (add a z-index above)
+            z-index: 20;
+        }
+
+    }
+
+    // This makes the other photos decrease in size. This is how the selector works - First hover on the entire composition, then select a photo that's nested in the composition, then select one that is not hovered
+
+    //composition:hover composition__photo:not(:hover) {
+
+    &:hover &__photo:not(:hover) {
+        transform: scale(.95);
+    }
+ }
